@@ -8,7 +8,6 @@ import IconPicker from '../ui/icon-picker';
 import Picker from '../ui/picker';
 import Tooltip from '../ui/tooltip';
 
-
 const ALIGNS = [ false, 'center', 'right', 'justify' ];
 
 const COLORS = [
