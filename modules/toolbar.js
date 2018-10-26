@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import Delta from 'quill-delta';
 import Parchment from 'parchment';
 import Quill from '../core/quill';
@@ -38,7 +39,7 @@ class Toolbar extends Module {
             }
         });
         this.quill.on(Quill.events.SCROLL_OPTIMIZE, () => {
-            let [range,] = this.quill.selection.getRange();  // quill.getSelection triggers update
+            let [range, ] = this.quill.selection.getRange();  // quill.getSelection triggers update
             this.update(range);
         });
     }
@@ -86,7 +87,7 @@ class Toolbar extends Module {
                 e.preventDefault();
             }
             this.quill.focus();
-            let [range,] = this.quill.selection.getRange();
+            let [range, ] = this.quill.selection.getRange();
             if (this.handlers[format] != null) {
                 this.handlers[format].call(this, value);
             } else if (Parchment.query(format).prototype instanceof Parchment.Embed) {

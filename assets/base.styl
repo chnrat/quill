@@ -241,11 +241,11 @@ colorItemsPerRow = 7
     width: 98px
     .ql-picker-label::before,
     .ql-picker-item::before
-      content: 'Normal'
+      content: '正文'
     for num in (1..6)
       .ql-picker-label[data-value=\"{num}\"]::before,
       .ql-picker-item[data-value=\"{num}\"]::before
-        content: 'Heading ' + num
+        content: '标题 ' + num
     .ql-picker-item[data-value="1"]::before
       font-size: 2em
     .ql-picker-item[data-value="2"]::before
