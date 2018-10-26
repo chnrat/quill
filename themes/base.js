@@ -214,6 +214,7 @@ class BaseTooltip extends Tooltip {
       case 'video': {
         value = extractVideoUrl(value);
       } // eslint-disable-next-line no-fallthrough
+      case 'image':
       case 'formula': {
         if (!value) break;
         let range = this.quill.getSelection(true);

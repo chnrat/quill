@@ -364,6 +364,15 @@
 .ql-editor .ql-font-monospace {
   font-family: Monaco, Courier New, monospace;
 }
+.ql-editor .ql-font-STKaiti {
+  font-family: STKaiti;
+}
+.ql-editor .ql-font-Yuanti-SC {
+  font-family: Yuanti-SC;
+}
+.ql-editor .ql-font-SimSun {
+  font-family: Simsum;
+}
 .ql-editor .ql-size-small {
   font-size: 0.75em;
 }
@@ -811,24 +820,39 @@
 .ql-bubble .ql-picker.ql-font .ql-picker-item[data-value=monospace]::before {
   font-family: Monaco, Courier New, monospace;
 }
+.ql-bubble .ql-picker.ql-font .ql-picker-label[data-value=SimSun]::before,
+.ql-bubble .ql-picker.ql-font .ql-picker-item[data-value=SimSun]::before {
+  content: '\5B8B\4F53';
+  font-family: SimSun;
+}
+.ql-bubble .ql-picker.ql-font .ql-picker-label[data-value=STKaiti]::before,
+.ql-bubble .ql-picker.ql-font .ql-picker-item[data-value=STKaiti]::before {
+  content: '\534E\6587\6977\4F53';
+  font-family: STKaiti;
+}
+.ql-bubble .ql-picker.ql-font .ql-picker-label[data-value=Yuanti-SC]::before,
+.ql-bubble .ql-picker.ql-font .ql-picker-item[data-value=Yuanti-SC]::before {
+  content: '\5706\4F53-\7B80';
+  font-family: Yuanti-SC;
+}
 .ql-bubble .ql-picker.ql-size {
   width: 98px;
 }
 .ql-bubble .ql-picker.ql-size .ql-picker-label::before,
 .ql-bubble .ql-picker.ql-size .ql-picker-item::before {
-  content: 'Normal';
+  content: '\4E2D';
 }
 .ql-bubble .ql-picker.ql-size .ql-picker-label[data-value=small]::before,
 .ql-bubble .ql-picker.ql-size .ql-picker-item[data-value=small]::before {
-  content: 'Small';
+  content: '\5C0F';
 }
 .ql-bubble .ql-picker.ql-size .ql-picker-label[data-value=large]::before,
 .ql-bubble .ql-picker.ql-size .ql-picker-item[data-value=large]::before {
-  content: 'Large';
+  content: '\5927';
 }
 .ql-bubble .ql-picker.ql-size .ql-picker-label[data-value=huge]::before,
 .ql-bubble .ql-picker.ql-size .ql-picker-item[data-value=huge]::before {
-  content: 'Huge';
+  content: '\8D85\5927';
 }
 .ql-bubble .ql-picker.ql-size .ql-picker-item[data-value=small]::before {
   font-size: 10px;
@@ -844,6 +868,9 @@
 }
 .ql-bubble .ql-color-picker.ql-color .ql-picker-item {
   background-color: #000;
+}
+svg {
+  vertical-align: baseline;
 }
 .ql-bubble .ql-toolbar .ql-formats {
   margin: 8px 12px 8px 0px;

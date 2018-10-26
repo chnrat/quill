@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 114);
+/******/ 	return __webpack_require__(__webpack_require__.s = 115);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -5404,7 +5404,7 @@ exports.sanitize = _sanitize;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -5415,7 +5415,7 @@ var _keyboard = __webpack_require__(23);
 
 var _keyboard2 = _interopRequireDefault(_keyboard);
 
-var _dropdown = __webpack_require__(107);
+var _dropdown = __webpack_require__(108);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
@@ -5426,212 +5426,237 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var optionsCounter = 0;
 
 function toggleAriaAttribute(element, attribute) {
-  element.setAttribute(attribute, !(element.getAttribute(attribute) === 'true'));
+    element.setAttribute(attribute, !(element.getAttribute(attribute) === 'true'));
 }
 
 var Picker = function () {
-  function Picker(select) {
-    var _this = this;
+    function Picker(select) {
+        var _this = this;
 
-    _classCallCheck(this, Picker);
+        _classCallCheck(this, Picker);
 
-    this.select = select;
-    this.container = document.createElement('span');
-    this.buildPicker();
-    this.select.style.display = 'none';
-    this.select.parentNode.insertBefore(this.container, this.select);
+        this.select = select;
+        this.container = document.createElement('span');
+        this.buildPicker();
+        this.select.style.display = 'none';
+        this.select.parentNode.insertBefore(this.container, this.select);
 
-    this.label.addEventListener('mousedown', function () {
-      _this.togglePicker();
-    });
-    this.label.addEventListener('keydown', function (event) {
-      switch (event.keyCode) {
-        // Allows the "Enter" key to open the picker
-        case _keyboard2.default.keys.ENTER:
-          _this.togglePicker();
-          break;
+        this.label.addEventListener('mousedown', function () {
+            document.querySelector('.bs-tooltip-top').remove();
+            _this.togglePicker();
+        });
+        this.label.addEventListener('keydown', function (event) {
+            switch (event.keyCode) {
+                // Allows the "Enter" key to open the picker
+                case _keyboard2.default.keys.ENTER:
+                    _this.togglePicker();
+                    break;
 
-        // Allows the "Escape" key to close the picker
-        case _keyboard2.default.keys.ESCAPE:
-          _this.escape();
-          event.preventDefault();
-          break;
-        default:
-      }
-    });
-    this.select.addEventListener('change', this.update.bind(this));
-  }
-
-  _createClass(Picker, [{
-    key: 'togglePicker',
-    value: function togglePicker() {
-      this.container.classList.toggle('ql-expanded');
-      // Toggle aria-expanded and aria-hidden to make the picker accessible
-      toggleAriaAttribute(this.label, 'aria-expanded');
-      toggleAriaAttribute(this.options, 'aria-hidden');
+                // Allows the "Escape" key to close the picker
+                case _keyboard2.default.keys.ESCAPE:
+                    _this.escape();
+                    event.preventDefault();
+                    break;
+                default:
+            }
+        });
+        this.select.addEventListener('change', this.update.bind(this));
     }
-  }, {
-    key: 'buildItem',
-    value: function buildItem(option) {
-      var _this2 = this;
 
-      var item = document.createElement('span');
-      item.tabIndex = '0';
-      item.setAttribute('role', 'button');
-
-      item.classList.add('ql-picker-item');
-      if (option.hasAttribute('value')) {
-        item.setAttribute('data-value', option.getAttribute('value'));
-      }
-      if (option.textContent) {
-        item.setAttribute('data-label', option.textContent);
-      }
-      item.addEventListener('click', function () {
-        _this2.selectItem(item, true);
-      });
-      item.addEventListener('keydown', function (event) {
-        switch (event.keyCode) {
-          // Allows the "Enter" key to select an item
-          case _keyboard2.default.keys.ENTER:
-            _this2.selectItem(item, true);
-            event.preventDefault();
-            break;
-
-          // Allows the "Escape" key to close the picker
-          case _keyboard2.default.keys.ESCAPE:
-            _this2.escape();
-            event.preventDefault();
-            break;
-          default:
+    _createClass(Picker, [{
+        key: 'togglePicker',
+        value: function togglePicker() {
+            this.container.classList.toggle('ql-expanded');
+            // Toggle aria-expanded and aria-hidden to make the picker accessible
+            toggleAriaAttribute(this.label, 'aria-expanded');
+            toggleAriaAttribute(this.options, 'aria-hidden');
         }
-      });
+    }, {
+        key: 'buildItem',
+        value: function buildItem(option) {
+            var _this2 = this;
 
-      return item;
-    }
-  }, {
-    key: 'buildLabel',
-    value: function buildLabel() {
-      var label = document.createElement('span');
-      label.classList.add('ql-picker-label');
-      label.innerHTML = _dropdown2.default;
-      label.tabIndex = '0';
-      label.setAttribute('role', 'button');
-      label.setAttribute('aria-expanded', 'false');
-      this.container.appendChild(label);
-      return label;
-    }
-  }, {
-    key: 'buildOptions',
-    value: function buildOptions() {
-      var _this3 = this;
+            var item = document.createElement('span');
+            item.tabIndex = '0';
+            item.setAttribute('role', 'button');
 
-      var options = document.createElement('span');
-      options.classList.add('ql-picker-options');
+            item.classList.add('ql-picker-item');
+            if (option.hasAttribute('value')) {
+                item.setAttribute('data-value', option.getAttribute('value'));
+            }
+            if (option.textContent) {
+                item.setAttribute('data-label', option.textContent);
+            }
+            item.addEventListener('click', function () {
+                _this2.selectItem(item, true);
+            });
+            item.addEventListener('keydown', function (event) {
+                switch (event.keyCode) {
+                    // Allows the "Enter" key to select an item
+                    case _keyboard2.default.keys.ENTER:
+                        _this2.selectItem(item, true);
+                        event.preventDefault();
+                        break;
 
-      // Don't want screen readers to read this until options are visible
-      options.setAttribute('aria-hidden', 'true');
-      options.tabIndex = '-1';
+                    // Allows the "Escape" key to close the picker
+                    case _keyboard2.default.keys.ESCAPE:
+                        _this2.escape();
+                        event.preventDefault();
+                        break;
+                    default:
+                }
+            });
 
-      // Need a unique id for aria-controls
-      options.id = 'ql-picker-options-' + optionsCounter;
-      optionsCounter += 1;
-      this.label.setAttribute('aria-controls', options.id);
-
-      this.options = options;
-
-      [].slice.call(this.select.options).forEach(function (option) {
-        var item = _this3.buildItem(option);
-        options.appendChild(item);
-        if (option.selected === true) {
-          _this3.selectItem(item);
+            return item;
         }
-      });
-      this.container.appendChild(options);
-    }
-  }, {
-    key: 'buildPicker',
-    value: function buildPicker() {
-      var _this4 = this;
-
-      [].slice.call(this.select.attributes).forEach(function (item) {
-        _this4.container.setAttribute(item.name, item.value);
-      });
-      this.container.classList.add('ql-picker');
-      this.label = this.buildLabel();
-      this.buildOptions();
-    }
-  }, {
-    key: 'escape',
-    value: function escape() {
-      var _this5 = this;
-
-      // Close menu and return focus to trigger label
-      this.close();
-      // Need setTimeout for accessibility to ensure that the browser executes
-      // focus on the next process thread and after any DOM content changes
-      setTimeout(function () {
-        return _this5.label.focus();
-      }, 1);
-    }
-  }, {
-    key: 'close',
-    value: function close() {
-      this.container.classList.remove('ql-expanded');
-      this.label.setAttribute('aria-expanded', 'false');
-      this.options.setAttribute('aria-hidden', 'true');
-    }
-  }, {
-    key: 'selectItem',
-    value: function selectItem(item) {
-      var trigger = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-      var selected = this.container.querySelector('.ql-selected');
-      if (item === selected) return;
-      if (selected != null) {
-        selected.classList.remove('ql-selected');
-      }
-      if (item == null) return;
-      item.classList.add('ql-selected');
-      this.select.selectedIndex = [].indexOf.call(item.parentNode.children, item);
-      if (item.hasAttribute('data-value')) {
-        this.label.setAttribute('data-value', item.getAttribute('data-value'));
-      } else {
-        this.label.removeAttribute('data-value');
-      }
-      if (item.hasAttribute('data-label')) {
-        this.label.setAttribute('data-label', item.getAttribute('data-label'));
-      } else {
-        this.label.removeAttribute('data-label');
-      }
-      if (trigger) {
-        if (typeof Event === 'function') {
-          this.select.dispatchEvent(new Event('change'));
-        } else if ((typeof Event === 'undefined' ? 'undefined' : _typeof(Event)) === 'object') {
-          // IE11
-          var event = document.createEvent('Event');
-          event.initEvent('change', true, true);
-          this.select.dispatchEvent(event);
+    }, {
+        key: 'buildLabel',
+        value: function buildLabel() {
+            var label = document.createElement('span');
+            label.classList.add('ql-picker-label');
+            label.innerHTML = _dropdown2.default;
+            label.tabIndex = '0';
+            label.setAttribute('role', 'button');
+            label.setAttribute('aria-expanded', 'false');
+            this.container.appendChild(label);
+            return label;
         }
-        this.close();
-      }
-    }
-  }, {
-    key: 'update',
-    value: function update() {
-      var option = void 0;
-      if (this.select.selectedIndex > -1) {
-        var item = this.container.querySelector('.ql-picker-options').children[this.select.selectedIndex];
-        option = this.select.options[this.select.selectedIndex];
-        this.selectItem(item);
-      } else {
-        this.selectItem(null);
-      }
-      var isActive = option != null && option !== this.select.querySelector('option[selected]');
-      this.label.classList.toggle('ql-active', isActive);
-    }
-  }]);
+    }, {
+        key: 'buildOptions',
+        value: function buildOptions() {
+            var _this3 = this;
 
-  return Picker;
+            var options = document.createElement('span');
+            options.classList.add('ql-picker-options');
+
+            // Don't want screen readers to read this until options are visible
+            options.setAttribute('aria-hidden', 'true');
+            options.tabIndex = '-1';
+
+            // Need a unique id for aria-controls
+            options.id = 'ql-picker-options-' + optionsCounter;
+            optionsCounter += 1;
+            this.label.setAttribute('aria-controls', options.id);
+
+            this.options = options;
+
+            [].slice.call(this.select.options).forEach(function (option) {
+                var item = _this3.buildItem(option);
+                options.appendChild(item);
+                if (option.selected === true) {
+                    _this3.selectItem(item);
+                }
+            });
+            this.container.appendChild(options);
+        }
+    }, {
+        key: 'convertFormatToTitle',
+        value: function convertFormatToTitle(name, value) {
+            if (name !== 'class') {
+                return null;
+            }
+
+            switch (value) {
+                case 'ql-font':
+                    return '字体';
+                case 'ql-size':
+                    return '字号';
+                case 'ql-color':
+                    return '颜色';
+                case 'ql-background':
+                    return '背景色';
+                case 'ql-header':
+                    return '标题与正文';
+                default:
+                    return '';
+            }
+        }
+    }, {
+        key: 'buildPicker',
+        value: function buildPicker() {
+            var _this4 = this;
+
+            [].slice.call(this.select.attributes).forEach(function (item) {
+                _this4.container.setAttribute(item.name, item.value);
+                _this4.container.setAttribute('data-toggle', 'tooltip');
+                _this4.container.setAttribute('title', _this4.convertFormatToTitle(item.name, item.value));
+            });
+            this.container.classList.add('ql-picker');
+            this.label = this.buildLabel();
+            this.buildOptions();
+        }
+    }, {
+        key: 'escape',
+        value: function escape() {
+            var _this5 = this;
+
+            // Close menu and return focus to trigger label
+            this.close();
+            // Need setTimeout for accessibility to ensure that the browser executes
+            // focus on the next process thread and after any DOM content changes
+            setTimeout(function () {
+                return _this5.label.focus();
+            }, 1);
+        }
+    }, {
+        key: 'close',
+        value: function close() {
+            this.container.classList.remove('ql-expanded');
+            this.label.setAttribute('aria-expanded', 'false');
+            this.options.setAttribute('aria-hidden', 'true');
+        }
+    }, {
+        key: 'selectItem',
+        value: function selectItem(item) {
+            var trigger = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+            var selected = this.container.querySelector('.ql-selected');
+            if (item === selected) return;
+            if (selected != null) {
+                selected.classList.remove('ql-selected');
+            }
+            if (item == null) return;
+            item.classList.add('ql-selected');
+            this.select.selectedIndex = [].indexOf.call(item.parentNode.children, item);
+            if (item.hasAttribute('data-value')) {
+                this.label.setAttribute('data-value', item.getAttribute('data-value'));
+            } else {
+                this.label.removeAttribute('data-value');
+            }
+            if (item.hasAttribute('data-label')) {
+                this.label.setAttribute('data-label', item.getAttribute('data-label'));
+            } else {
+                this.label.removeAttribute('data-label');
+            }
+            if (trigger) {
+                if (typeof Event === 'function') {
+                    this.select.dispatchEvent(new Event('change'));
+                } else if ((typeof Event === 'undefined' ? 'undefined' : _typeof(Event)) === 'object') {
+                    // IE11
+                    var event = document.createEvent('Event');
+                    event.initEvent('change', true, true);
+                    this.select.dispatchEvent(event);
+                }
+                this.close();
+            }
+        }
+    }, {
+        key: 'update',
+        value: function update() {
+            var option = void 0;
+            if (this.select.selectedIndex > -1) {
+                var item = this.container.querySelector('.ql-picker-options').children[this.select.selectedIndex];
+                option = this.select.options[this.select.selectedIndex];
+                this.selectItem(item);
+            } else {
+                this.selectItem(null);
+            }
+            var isActive = option != null && option !== this.select.querySelector('option[selected]');
+            this.label.classList.toggle('ql-active', isActive);
+        }
+    }]);
+
+    return Picker;
 }();
 
 exports.default = Picker;
@@ -6453,53 +6478,54 @@ exports.SizeStyle = SizeStyle;
 
 
 module.exports = {
-  'align': {
-    '': __webpack_require__(76),
-    'center': __webpack_require__(77),
-    'right': __webpack_require__(78),
-    'justify': __webpack_require__(79)
-  },
-  'background': __webpack_require__(80),
-  'blockquote': __webpack_require__(81),
-  'bold': __webpack_require__(82),
-  'clean': __webpack_require__(83),
-  'code': __webpack_require__(58),
-  'code-block': __webpack_require__(58),
-  'color': __webpack_require__(84),
-  'direction': {
-    '': __webpack_require__(85),
-    'rtl': __webpack_require__(86)
-  },
-  'float': {
-    'center': __webpack_require__(87),
-    'full': __webpack_require__(88),
-    'left': __webpack_require__(89),
-    'right': __webpack_require__(90)
-  },
-  'formula': __webpack_require__(91),
-  'header': {
-    '1': __webpack_require__(92),
-    '2': __webpack_require__(93)
-  },
-  'italic': __webpack_require__(94),
-  'image': __webpack_require__(95),
-  'indent': {
-    '+1': __webpack_require__(96),
-    '-1': __webpack_require__(97)
-  },
-  'link': __webpack_require__(98),
-  'list': {
-    'ordered': __webpack_require__(99),
-    'bullet': __webpack_require__(100),
-    'check': __webpack_require__(101)
-  },
-  'script': {
-    'sub': __webpack_require__(102),
-    'super': __webpack_require__(103)
-  },
-  'strike': __webpack_require__(104),
-  'underline': __webpack_require__(105),
-  'video': __webpack_require__(106)
+    'align': {
+        'left': __webpack_require__(76),
+        'center': __webpack_require__(77),
+        'right': __webpack_require__(78),
+        'justify': __webpack_require__(79)
+    },
+    'background': __webpack_require__(80),
+    'blockquote': __webpack_require__(81),
+    'bold': __webpack_require__(82),
+    'clean': __webpack_require__(83),
+    'code': __webpack_require__(58),
+    'code-block': __webpack_require__(58),
+    'color': __webpack_require__(84),
+    'direction': {
+        '': __webpack_require__(85),
+        'rtl': __webpack_require__(86)
+    },
+    'float': {
+        'center': __webpack_require__(87),
+        'full': __webpack_require__(88),
+        'left': __webpack_require__(89),
+        'right': __webpack_require__(90)
+    },
+    'formula': __webpack_require__(91),
+    'header': {
+        '1': __webpack_require__(92),
+        '2': __webpack_require__(93)
+    },
+    'italic': __webpack_require__(94),
+    'image': __webpack_require__(95),
+    'indent': {
+        '+1': __webpack_require__(96),
+        '-1': __webpack_require__(97)
+    },
+    'link': __webpack_require__(98),
+    'list': {
+        'ordered': __webpack_require__(99),
+        'bullet': __webpack_require__(100),
+        'check': __webpack_require__(101)
+    },
+    'script': {
+        'sub': __webpack_require__(102),
+        'super': __webpack_require__(103)
+    },
+    'strike': __webpack_require__(104),
+    'underline': __webpack_require__(105),
+    'video': __webpack_require__(106),
+    'embed': __webpack_require__(107)
 };
 
 /***/ }),
@@ -6960,6 +6986,7 @@ var BaseTooltip = function (_Tooltip) {
           {
             value = extractVideoUrl(value);
           } // eslint-disable-next-line no-fallthrough
+        case 'image':
         case 'formula':
           {
             if (!value) break;
@@ -9319,7 +9346,7 @@ exports.default = Bold;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.addControls = exports.default = undefined;
 
@@ -9360,277 +9387,331 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var debug = (0, _logger2.default)('quill:toolbar');
 
 var Toolbar = function (_Module) {
-  _inherits(Toolbar, _Module);
+    _inherits(Toolbar, _Module);
 
-  function Toolbar(quill, options) {
-    _classCallCheck(this, Toolbar);
+    function Toolbar(quill, options) {
+        _classCallCheck(this, Toolbar);
 
-    var _this = _possibleConstructorReturn(this, (Toolbar.__proto__ || Object.getPrototypeOf(Toolbar)).call(this, quill, options));
+        var _this = _possibleConstructorReturn(this, (Toolbar.__proto__ || Object.getPrototypeOf(Toolbar)).call(this, quill, options));
 
-    if (Array.isArray(_this.options.container)) {
-      var container = document.createElement('div');
-      addControls(container, _this.options.container);
-      quill.container.parentNode.insertBefore(container, quill.container);
-      _this.container = container;
-    } else if (typeof _this.options.container === 'string') {
-      _this.container = document.querySelector(_this.options.container);
-    } else {
-      _this.container = _this.options.container;
-    }
-    if (!(_this.container instanceof HTMLElement)) {
-      var _ret;
-
-      return _ret = debug.error('Container required for toolbar', _this.options), _possibleConstructorReturn(_this, _ret);
-    }
-    _this.container.classList.add('ql-toolbar');
-    _this.controls = [];
-    _this.handlers = {};
-    Object.keys(_this.options.handlers).forEach(function (format) {
-      _this.addHandler(format, _this.options.handlers[format]);
-    });
-    [].forEach.call(_this.container.querySelectorAll('button, select'), function (input) {
-      _this.attach(input);
-    });
-    _this.quill.on(_quill2.default.events.EDITOR_CHANGE, function (type, range) {
-      if (type === _quill2.default.events.SELECTION_CHANGE) {
-        _this.update(range);
-      }
-    });
-    _this.quill.on(_quill2.default.events.SCROLL_OPTIMIZE, function () {
-      var _this$quill$selection = _this.quill.selection.getRange(),
-          _this$quill$selection2 = _slicedToArray(_this$quill$selection, 1),
-          range = _this$quill$selection2[0]; // quill.getSelection triggers update
-
-
-      _this.update(range);
-    });
-    return _this;
-  }
-
-  _createClass(Toolbar, [{
-    key: 'addHandler',
-    value: function addHandler(format, handler) {
-      this.handlers[format] = handler;
-    }
-  }, {
-    key: 'attach',
-    value: function attach(input) {
-      var _this2 = this;
-
-      var format = [].find.call(input.classList, function (className) {
-        return className.indexOf('ql-') === 0;
-      });
-      if (!format) return;
-      format = format.slice('ql-'.length);
-      if (input.tagName === 'BUTTON') {
-        input.setAttribute('type', 'button');
-      }
-      if (this.handlers[format] == null) {
-        if (this.quill.scroll.whitelist != null && this.quill.scroll.whitelist[format] == null) {
-          debug.warn('ignoring attaching to disabled format', format, input);
-          return;
-        }
-        if (_parchment2.default.query(format) == null) {
-          debug.warn('ignoring attaching to nonexistent format', format, input);
-          return;
-        }
-      }
-      var eventName = input.tagName === 'SELECT' ? 'change' : 'click';
-      input.addEventListener(eventName, function (e) {
-        var value = void 0;
-        if (input.tagName === 'SELECT') {
-          if (input.selectedIndex < 0) return;
-          var selected = input.options[input.selectedIndex];
-          if (selected.hasAttribute('selected')) {
-            value = false;
-          } else {
-            value = selected.value || false;
-          }
+        if (Array.isArray(_this.options.container)) {
+            var container = document.createElement('div');
+            addControls(container, _this.options.container);
+            quill.container.parentNode.insertBefore(container, quill.container);
+            _this.container = container;
+        } else if (typeof _this.options.container === 'string') {
+            _this.container = document.querySelector(_this.options.container);
         } else {
-          if (input.classList.contains('ql-active')) {
-            value = false;
-          } else {
-            value = input.value || !input.hasAttribute('value');
-          }
-          e.preventDefault();
+            _this.container = _this.options.container;
         }
-        _this2.quill.focus();
+        if (!(_this.container instanceof HTMLElement)) {
+            var _ret;
 
-        var _quill$selection$getR = _this2.quill.selection.getRange(),
-            _quill$selection$getR2 = _slicedToArray(_quill$selection$getR, 1),
-            range = _quill$selection$getR2[0];
-
-        if (_this2.handlers[format] != null) {
-          _this2.handlers[format].call(_this2, value);
-        } else if (_parchment2.default.query(format).prototype instanceof _parchment2.default.Embed) {
-          value = prompt('Enter ' + format);
-          if (!value) return;
-          _this2.quill.updateContents(new _quillDelta2.default().retain(range.index).delete(range.length).insert(_defineProperty({}, format, value)), _quill2.default.sources.USER);
-        } else {
-          _this2.quill.format(format, value, _quill2.default.sources.USER);
+            return _ret = debug.error('Container required for toolbar', _this.options), _possibleConstructorReturn(_this, _ret);
         }
-        _this2.update(range);
-      });
-      // TODO use weakmap
-      this.controls.push([format, input]);
-    }
-  }, {
-    key: 'update',
-    value: function update(range) {
-      var formats = range == null ? {} : this.quill.getFormat(range);
-      this.controls.forEach(function (pair) {
-        var _pair = _slicedToArray(pair, 2),
-            format = _pair[0],
-            input = _pair[1];
-
-        if (input.tagName === 'SELECT') {
-          var option = void 0;
-          if (range == null) {
-            option = null;
-          } else if (formats[format] == null) {
-            option = input.querySelector('option[selected]');
-          } else if (!Array.isArray(formats[format])) {
-            var value = formats[format];
-            if (typeof value === 'string') {
-              value = value.replace(/\"/g, '\\"');
+        _this.container.classList.add('ql-toolbar');
+        _this.controls = [];
+        _this.handlers = {};
+        Object.keys(_this.options.handlers).forEach(function (format) {
+            _this.addHandler(format, _this.options.handlers[format]);
+        });
+        [].forEach.call(_this.container.querySelectorAll('button, select'), function (input) {
+            _this.attach(input);
+        });
+        _this.quill.on(_quill2.default.events.EDITOR_CHANGE, function (type, range) {
+            if (type === _quill2.default.events.SELECTION_CHANGE) {
+                _this.update(range);
             }
-            option = input.querySelector('option[value="' + value + '"]');
-          }
-          if (option == null) {
-            input.value = ''; // TODO make configurable?
-            input.selectedIndex = -1;
-          } else {
-            option.selected = true;
-          }
-        } else {
-          if (range == null) {
-            input.classList.remove('ql-active');
-          } else if (input.hasAttribute('value')) {
-            // both being null should match (default values)
-            // '1' should match with 1 (headers)
-            var isActive = formats[format] === input.getAttribute('value') || formats[format] != null && formats[format].toString() === input.getAttribute('value') || formats[format] == null && !input.getAttribute('value');
-            input.classList.toggle('ql-active', isActive);
-          } else {
-            input.classList.toggle('ql-active', formats[format] != null);
-          }
-        }
-      });
-    }
-  }]);
+        });
+        _this.quill.on(_quill2.default.events.SCROLL_OPTIMIZE, function () {
+            var _this$quill$selection = _this.quill.selection.getRange(),
+                _this$quill$selection2 = _slicedToArray(_this$quill$selection, 1),
+                range = _this$quill$selection2[0]; // quill.getSelection triggers update
 
-  return Toolbar;
+
+            _this.update(range);
+        });
+        return _this;
+    }
+
+    _createClass(Toolbar, [{
+        key: 'addHandler',
+        value: function addHandler(format, handler) {
+            this.handlers[format] = handler;
+        }
+    }, {
+        key: 'attach',
+        value: function attach(input) {
+            var _this2 = this;
+
+            var format = [].find.call(input.classList, function (className) {
+                return className.indexOf('ql-') === 0;
+            });
+            if (!format) return;
+            format = format.slice('ql-'.length);
+            if (input.tagName === 'BUTTON') {
+                input.setAttribute('type', 'button');
+            }
+            if (this.handlers[format] == null) {
+                if (this.quill.scroll.whitelist != null && this.quill.scroll.whitelist[format] == null) {
+                    debug.warn('ignoring attaching to disabled format', format, input);
+                    return;
+                }
+                if (_parchment2.default.query(format) == null) {
+                    debug.warn('ignoring attaching to nonexistent format', format, input);
+                    return;
+                }
+            }
+            var eventName = input.tagName === 'SELECT' ? 'change' : 'click';
+            input.addEventListener(eventName, function (e) {
+                var value = void 0;
+                if (input.tagName === 'SELECT') {
+                    if (input.selectedIndex < 0) return;
+                    var selected = input.options[input.selectedIndex];
+                    if (selected.hasAttribute('selected')) {
+                        value = false;
+                    } else {
+                        value = selected.value || false;
+                    }
+                } else {
+                    if (input.classList.contains('ql-active')) {
+                        value = false;
+                    } else {
+                        value = input.value || !input.hasAttribute('value');
+                    }
+                    e.preventDefault();
+                }
+                _this2.quill.focus();
+
+                var _quill$selection$getR = _this2.quill.selection.getRange(),
+                    _quill$selection$getR2 = _slicedToArray(_quill$selection$getR, 1),
+                    range = _quill$selection$getR2[0];
+
+                if (_this2.handlers[format] != null) {
+                    _this2.handlers[format].call(_this2, value);
+                } else if (_parchment2.default.query(format).prototype instanceof _parchment2.default.Embed) {
+                    value = prompt('Enter ' + format);
+                    if (!value) return;
+                    _this2.quill.updateContents(new _quillDelta2.default().retain(range.index).delete(range.length).insert(_defineProperty({}, format, value)), _quill2.default.sources.USER);
+                } else {
+                    _this2.quill.format(format, value, _quill2.default.sources.USER);
+                }
+                _this2.update(range);
+            });
+            // TODO use weakmap
+            this.controls.push([format, input]);
+        }
+    }, {
+        key: 'update',
+        value: function update(range) {
+            var formats = range == null ? {} : this.quill.getFormat(range);
+            this.controls.forEach(function (pair) {
+                var _pair = _slicedToArray(pair, 2),
+                    format = _pair[0],
+                    input = _pair[1];
+
+                if (input.tagName === 'SELECT') {
+                    var option = void 0;
+                    if (range == null) {
+                        option = null;
+                    } else if (formats[format] == null) {
+                        option = input.querySelector('option[selected]');
+                    } else if (!Array.isArray(formats[format])) {
+                        var value = formats[format];
+                        if (typeof value === 'string') {
+                            value = value.replace(/\"/g, '\\"');
+                        }
+                        option = input.querySelector('option[value="' + value + '"]');
+                    }
+                    if (option == null) {
+                        input.value = ''; // TODO make configurable?
+                        input.selectedIndex = -1;
+                    } else {
+                        option.selected = true;
+                    }
+                } else {
+                    if (range == null) {
+                        input.classList.remove('ql-active');
+                    } else if (input.hasAttribute('value')) {
+                        // both being null should match (default values)
+                        // '1' should match with 1 (headers)
+                        var isActive = formats[format] === input.getAttribute('value') || formats[format] != null && formats[format].toString() === input.getAttribute('value') || formats[format] == null && !input.getAttribute('value');
+                        input.classList.toggle('ql-active', isActive);
+                    } else {
+                        input.classList.toggle('ql-active', formats[format] != null);
+                    }
+                }
+            });
+        }
+    }]);
+
+    return Toolbar;
 }(_module2.default);
 
 Toolbar.DEFAULTS = {};
 
+function convertFormatToTitle(format, value) {
+    switch (format) {
+        case 'bold':
+            return '加粗';
+        case 'italic':
+            return '斜体';
+        case 'strike':
+            return '删除线';
+        case 'underline':
+            return '下划线';
+        case 'blockquote':
+            return '插入引用';
+        case 'code-block':
+            return '插入代码';
+        case 'indent':
+            return value === '-1' ? '减少缩进' : '增加缩进';
+        case 'list':
+            return value === 'ordered' ? '有序列表' : '无序列表';
+        case 'script':
+            return value === 'super' ? '上标' : '下标';
+        case 'link':
+            return '插入链接';
+        case 'image':
+            return '本地图片';
+        case 'embed':
+            return '网络图片';
+        case 'video':
+            return '插入视频';
+        case 'formula':
+            return '插入公式';
+        case 'clean':
+            return '清除格式';
+        case 'align':
+            switch (value) {
+                case 'left':
+                    return '左对齐';
+                case 'center':
+                    return '居中对齐';
+                case 'right':
+                    return '右对齐';
+                case 'justify':
+                    return '两端对齐';
+
+                default:
+                    return '';
+            }
+        default:
+            return '';
+    }
+}
+
 function addButton(container, format, value) {
-  var input = document.createElement('button');
-  input.setAttribute('type', 'button');
-  input.classList.add('ql-' + format);
-  if (value != null) {
-    input.value = value;
-  }
-  container.appendChild(input);
+    var input = document.createElement('button');
+    input.setAttribute('type', 'button');
+    input.setAttribute('data-toggle', 'tooltip');
+    input.setAttribute('title', convertFormatToTitle(format, value));
+    input.setAttribute('type', 'button');
+    input.classList.add('ql-' + format);
+    if (value != null) {
+        input.value = value;
+    }
+    container.appendChild(input);
 }
 
 function addControls(container, groups) {
-  if (!Array.isArray(groups[0])) {
-    groups = [groups];
-  }
-  groups.forEach(function (controls) {
-    var group = document.createElement('span');
-    group.classList.add('ql-formats');
-    controls.forEach(function (control) {
-      if (typeof control === 'string') {
-        addButton(group, control);
-      } else {
-        var format = Object.keys(control)[0];
-        var value = control[format];
-        if (Array.isArray(value)) {
-          addSelect(group, format, value);
-        } else {
-          addButton(group, format, value);
-        }
-      }
+    if (!Array.isArray(groups[0])) {
+        groups = [groups];
+    }
+    groups.forEach(function (controls) {
+        var group = document.createElement('span');
+        group.classList.add('ql-formats');
+        controls.forEach(function (control) {
+            if (typeof control === 'string') {
+                addButton(group, control);
+            } else {
+                var format = Object.keys(control)[0];
+                var value = control[format];
+                if (Array.isArray(value)) {
+                    addSelect(group, format, value);
+                } else {
+                    addButton(group, format, value);
+                }
+            }
+        });
+        container.appendChild(group);
     });
-    container.appendChild(group);
-  });
 }
 
 function addSelect(container, format, values) {
-  var input = document.createElement('select');
-  input.classList.add('ql-' + format);
-  values.forEach(function (value) {
-    var option = document.createElement('option');
-    if (value !== false) {
-      option.setAttribute('value', value);
-    } else {
-      option.setAttribute('selected', 'selected');
-    }
-    input.appendChild(option);
-  });
-  container.appendChild(input);
+    var input = document.createElement('select');
+    input.classList.add('ql-' + format);
+    values.forEach(function (value) {
+        var option = document.createElement('option');
+        if (value !== false) {
+            option.setAttribute('value', value);
+        } else {
+            option.setAttribute('selected', 'selected');
+        }
+        input.appendChild(option);
+    });
+    container.appendChild(input);
 }
 
 Toolbar.DEFAULTS = {
-  container: null,
-  handlers: {
-    clean: function clean() {
-      var _this3 = this;
+    container: null,
+    handlers: {
+        clean: function clean() {
+            var _this3 = this;
 
-      var range = this.quill.getSelection();
-      if (range == null) return;
-      if (range.length == 0) {
-        var formats = this.quill.getFormat();
-        Object.keys(formats).forEach(function (name) {
-          // Clean functionality in existing apps only clean inline formats
-          if (_parchment2.default.query(name, _parchment2.default.Scope.INLINE) != null) {
-            _this3.quill.format(name, false);
-          }
-        });
-      } else {
-        this.quill.removeFormat(range, _quill2.default.sources.USER);
-      }
-    },
-    direction: function direction(value) {
-      var align = this.quill.getFormat()['align'];
-      if (value === 'rtl' && align == null) {
-        this.quill.format('align', 'right', _quill2.default.sources.USER);
-      } else if (!value && align === 'right') {
-        this.quill.format('align', false, _quill2.default.sources.USER);
-      }
-      this.quill.format('direction', value, _quill2.default.sources.USER);
-    },
-    indent: function indent(value) {
-      var range = this.quill.getSelection();
-      var formats = this.quill.getFormat(range);
-      var indent = parseInt(formats.indent || 0);
-      if (value === '+1' || value === '-1') {
-        var modifier = value === '+1' ? 1 : -1;
-        if (formats.direction === 'rtl') modifier *= -1;
-        this.quill.format('indent', indent + modifier, _quill2.default.sources.USER);
-      }
-    },
-    link: function link(value) {
-      if (value === true) {
-        value = prompt('Enter link URL:');
-      }
-      this.quill.format('link', value, _quill2.default.sources.USER);
-    },
-    list: function list(value) {
-      var range = this.quill.getSelection();
-      var formats = this.quill.getFormat(range);
-      if (value === 'check') {
-        if (formats['list'] === 'checked' || formats['list'] === 'unchecked') {
-          this.quill.format('list', false, _quill2.default.sources.USER);
-        } else {
-          this.quill.format('list', 'unchecked', _quill2.default.sources.USER);
+            var range = this.quill.getSelection();
+            if (range == null) return;
+            if (range.length == 0) {
+                var formats = this.quill.getFormat();
+                Object.keys(formats).forEach(function (name) {
+                    // Clean functionality in existing apps only clean inline formats
+                    if (_parchment2.default.query(name, _parchment2.default.Scope.INLINE) != null) {
+                        _this3.quill.format(name, false);
+                    }
+                });
+            } else {
+                this.quill.removeFormat(range, _quill2.default.sources.USER);
+            }
+        },
+        direction: function direction(value) {
+            var align = this.quill.getFormat()['align'];
+            if (value === 'rtl' && align == null) {
+                this.quill.format('align', 'right', _quill2.default.sources.USER);
+            } else if (!value && align === 'right') {
+                this.quill.format('align', false, _quill2.default.sources.USER);
+            }
+            this.quill.format('direction', value, _quill2.default.sources.USER);
+        },
+        indent: function indent(value) {
+            var range = this.quill.getSelection();
+            var formats = this.quill.getFormat(range);
+            var indent = parseInt(formats.indent || 0);
+            if (value === '+1' || value === '-1') {
+                var modifier = value === '+1' ? 1 : -1;
+                if (formats.direction === 'rtl') modifier *= -1;
+                this.quill.format('indent', indent + modifier, _quill2.default.sources.USER);
+            }
+        },
+        link: function link(value) {
+            if (value === true) {
+                value = prompt('Enter link URL:');
+            }
+            this.quill.format('link', value, _quill2.default.sources.USER);
+        },
+        list: function list(value) {
+            var range = this.quill.getSelection();
+            var formats = this.quill.getFormat(range);
+            if (value === 'check') {
+                if (formats['list'] === 'checked' || formats['list'] === 'unchecked') {
+                    this.quill.format('list', false, _quill2.default.sources.USER);
+                } else {
+                    this.quill.format('list', 'unchecked', _quill2.default.sources.USER);
+                }
+            } else {
+                this.quill.format('list', value, _quill2.default.sources.USER);
+            }
         }
-      } else {
-        this.quill.format('list', value, _quill2.default.sources.USER);
-      }
     }
-  }
 };
 
 exports.default = Toolbar;
@@ -10026,7 +10107,7 @@ var SnowTooltip = function (_BaseTooltip) {
   return SnowTooltip;
 }(_base.BaseTooltip);
 
-SnowTooltip.TEMPLATE = ['<a class="ql-preview" target="_blank" href="about:blank"></a>', '<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL">', '<a class="ql-action"></a>', '<a class="ql-remove"></a>'].join('');
+SnowTooltip.TEMPLATE = ['<a class="ql-preview" target="_blank" href="about:blank"></a>', '<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL" data-image="Image URL">', '<a class="ql-action"></a>', '<a class="ql-remove"></a>'].join('');
 
 exports.default = SnowTheme;
 
@@ -10139,7 +10220,7 @@ var _tooltip = __webpack_require__(61);
 
 var _tooltip2 = _interopRequireDefault(_tooltip);
 
-var _bubble = __webpack_require__(108);
+var _bubble = __webpack_require__(109);
 
 var _bubble2 = _interopRequireDefault(_bubble);
 
@@ -11381,10 +11462,16 @@ module.exports = "<svg viewbox=\"0 0 18 18\"> <rect class=ql-stroke height=12 wi
 /* 107 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewbox=\"0 0 18 18\"> <polygon class=ql-stroke points=\"7 11 9 13 11 11 7 11\"></polygon> <polygon class=ql-stroke points=\"7 7 9 5 11 7 7 7\"></polygon> </svg>";
+module.exports = "<svg viewBox=\"0 0 18 18\"> <path class=ql-fill d=M14.60284,8.5036A2.48315,2.48315,0,0,0,14.71429,7.8a2.34494,2.34494,0,0,0-2.28571-2.4,2.19651,2.19651,0,0,0-1.3631.48358A4.01147,4.01147,0,0,0,7.28571,3a4.1037,4.1037,0,0,0-4,4.2,4.40682,4.40682,0,0,0,.07642.79553A3.57444,3.57444,0,0,0,1,11.4,3.51743,3.51743,0,0,0,4.42859,15h9.42853A3.22436,3.22436,0,0,0,17,11.7,3.26609,3.26609,0,0,0,14.60284,8.5036ZM6.85352,10.64648a.49995.49995,0,1,1-.707.707l-1-1a.49982.49982,0,0,1,0-.707l1-1a.49995.49995,0,0,1,.707.707L6.207,10ZM9.48535,8.12109l-1,4A.5.5,0,0,1,8,12.5a.51952.51952,0,0,1-.12109-.01465.50066.50066,0,0,1-.36426-.60645l1-4a.50023.50023,0,0,1,.9707.24219Zm2.36816,2.23242-1,1a.49995.49995,0,0,1-.707-.707L10.793,10l-.64648-.64648a.49995.49995,0,0,1,.707-.707l1,1A.49982.49982,0,0,1,11.85352,10.35352Z /> </svg>";
 
 /***/ }),
 /* 108 */
+/***/ (function(module, exports) {
+
+module.exports = "<svg viewbox=\"0 0 18 18\"> <polygon class=ql-stroke points=\"7 11 9 13 11 11 7 11\"></polygon> <polygon class=ql-stroke points=\"7 7 9 5 11 7 7 7\"></polygon> </svg>";
+
+/***/ }),
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11550,12 +11637,12 @@ exports.BubbleTooltip = BubbleTooltip;
 exports.default = BubbleTheme;
 
 /***/ }),
-/* 109 */,
 /* 110 */,
 /* 111 */,
 /* 112 */,
 /* 113 */,
-/* 114 */
+/* 114 */,
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11572,8 +11659,6 @@ var _quill2 = _interopRequireDefault(_quill);
 var _code = __webpack_require__(13);
 
 var _code2 = _interopRequireDefault(_code);
-
-__webpack_require__(115);
 
 __webpack_require__(116);
 
@@ -11619,6 +11704,8 @@ __webpack_require__(136);
 
 __webpack_require__(137);
 
+__webpack_require__(138);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _quill2.default.register(_code2.default, true); // Syntax version will otherwise be registered
@@ -11626,7 +11713,7 @@ _quill2.default.register(_code2.default, true); // Syntax version will otherwise
 exports.default = _quill2.default;
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11784,7 +11871,7 @@ function initialize(klass, html) {
 }
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11912,7 +11999,7 @@ describe('Scroll', function () {
 });
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12005,7 +12092,7 @@ describe('Block', function () {
 });
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12094,7 +12181,7 @@ describe('Block Embed', function () {
 });
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12131,7 +12218,7 @@ describe('Inline', function () {
 });
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12493,7 +12580,7 @@ describe('Editor', function () {
 });
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12983,7 +13070,7 @@ describe('Selection', function () {
 });
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13774,7 +13861,7 @@ describe('Quill', function () {
 });
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13823,7 +13910,7 @@ describe('Color', function () {
 });
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13881,7 +13968,7 @@ describe('Link', function () {
 });
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13914,7 +14001,7 @@ describe('Script', function () {
 });
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13963,7 +14050,7 @@ describe('Align', function () {
 });
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14119,7 +14206,7 @@ describe('Code', function () {
 });
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14159,7 +14246,7 @@ describe('Header', function () {
 });
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14192,7 +14279,7 @@ describe('Indent', function () {
 });
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14353,7 +14440,7 @@ describe('List', function () {
 });
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14377,7 +14464,7 @@ describe('Bold', function () {
 });
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14538,7 +14625,7 @@ describe('Clipboard', function () {
 });
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14737,7 +14824,7 @@ describe('History', function () {
 });
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14859,7 +14946,7 @@ describe('Keyboard', function () {
 });
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14957,7 +15044,7 @@ describe('Toolbar', function () {
 });
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15116,7 +15203,7 @@ describe('Picker', function () {
 });
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

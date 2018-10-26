@@ -274,21 +274,33 @@ colorItemsPerRow = 7
       font-family: Georgia, Times New Roman, serif;
     .ql-picker-item[data-value=monospace]::before
       font-family: Monaco, Courier New, monospace;
+    .ql-picker-label[data-value=SimSun]::before,
+    .ql-picker-item[data-value=SimSun]::before
+      content: '宋体'
+      font-family: SimSun
+    .ql-picker-label[data-value=STKaiti]::before,
+    .ql-picker-item[data-value=STKaiti]::before
+      content: '华文楷体'
+      font-family: STKaiti
+    .ql-picker-label[data-value=Yuanti-SC]::before,
+    .ql-picker-item[data-value=Yuanti-SC]::before
+      content: '圆体-简'
+      font-family: Yuanti-SC
 
   .ql-picker.ql-size
     width: 98px
     .ql-picker-label::before,
     .ql-picker-item::before
-      content: 'Normal'
+      content: '中'
     .ql-picker-label[data-value=small]::before,
     .ql-picker-item[data-value=small]::before
-      content: 'Small'
+      content: '小'
     .ql-picker-label[data-value=large]::before,
     .ql-picker-item[data-value=large]::before
-      content: 'Large'
+      content: '大'
     .ql-picker-label[data-value=huge]::before,
     .ql-picker-item[data-value=huge]::before
-      content: 'Huge'
+      content: '超大'
     .ql-picker-item[data-value=small]::before
       font-size: 10px
     .ql-picker-item[data-value=large]::before
@@ -302,3 +314,6 @@ colorItemsPerRow = 7
   .ql-color-picker.ql-color
     .ql-picker-item
       background-color: #000;
+
+svg
+  vertical-align: baseline

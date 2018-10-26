@@ -364,6 +364,15 @@
 .ql-editor .ql-font-monospace {
   font-family: Monaco, Courier New, monospace;
 }
+.ql-editor .ql-font-STKaiti {
+  font-family: STKaiti;
+}
+.ql-editor .ql-font-Yuanti-SC {
+  font-family: Yuanti-SC;
+}
+.ql-editor .ql-font-SimSun {
+  font-family: Simsum;
+}
 .ql-editor .ql-size-small {
   font-size: 0.75em;
 }
