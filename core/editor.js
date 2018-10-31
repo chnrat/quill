@@ -83,7 +83,12 @@ class Editor {
       lines.forEach((line) => {
         let lineLength = line.length();
         if (!(line instanceof CodeBlock)) {
-          line.format(format, formats[format]);
+            if(formats[format] === 'left'){
+                line.format(format, false);
+            }else {
+                line.format(format, formats[format]);
+            }
+            // line.format(format, formats[format]); // original code
         } else {
           let codeIndex = index - line.offset(this.scroll);
           let codeLength = line.newlineIndex(codeIndex + lengthRemaining) - codeIndex + 1;

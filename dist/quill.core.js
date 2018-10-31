@@ -2571,7 +2571,12 @@ var Editor = function () {
         lines.forEach(function (line) {
           var lineLength = line.length();
           if (!(line instanceof _code2.default)) {
-            line.format(format, formats[format]);
+            if (formats[format] === 'left') {
+              line.format(format, false);
+            } else {
+              line.format(format, formats[format]);
+            }
+            // line.format(format, formats[format]); // original code
           } else {
             var codeIndex = index - line.offset(_this2.scroll);
             var codeLength = line.newlineIndex(codeIndex + lengthRemaining) - codeIndex + 1;

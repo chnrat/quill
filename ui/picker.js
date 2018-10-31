@@ -16,7 +16,8 @@ class Picker {
         this.select.parentNode.insertBefore(this.container, this.select);
 
         this.label.addEventListener('mousedown', () => {
-            document.querySelector('.bs-tooltip-top').remove();
+            let currentTooltip = document.querySelector('.bs-tooltip-top');
+            currentTooltip && currentTooltip.remove();
             this.togglePicker();
         });
         this.label.addEventListener('keydown', (event) => {
