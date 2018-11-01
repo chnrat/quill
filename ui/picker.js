@@ -132,6 +132,8 @@ class Picker {
                 return '背景色';
             case 'ql-header':
                 return '标题与正文';
+            case 'ql-align':
+                return '对齐';
             default:
                 return '';
         }

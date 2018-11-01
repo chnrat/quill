@@ -89,11 +89,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var container_1 = __webpack_require__(17);
 var format_1 = __webpack_require__(18);
 var leaf_1 = __webpack_require__(19);
-var scroll_1 = __webpack_require__(45);
-var inline_1 = __webpack_require__(46);
-var block_1 = __webpack_require__(47);
-var embed_1 = __webpack_require__(48);
-var text_1 = __webpack_require__(49);
+var scroll_1 = __webpack_require__(46);
+var inline_1 = __webpack_require__(47);
+var block_1 = __webpack_require__(48);
+var embed_1 = __webpack_require__(49);
+var text_1 = __webpack_require__(50);
 var attributor_1 = __webpack_require__(12);
 var class_1 = __webpack_require__(32);
 var style_1 = __webpack_require__(33);
@@ -282,7 +282,7 @@ exports.register = register;
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var diff = __webpack_require__(51);
+var diff = __webpack_require__(52);
 var equal = __webpack_require__(11);
 var extend = __webpack_require__(3);
 var op = __webpack_require__(20);
@@ -1027,7 +1027,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-__webpack_require__(50);
+__webpack_require__(51);
 
 var _quillDelta = __webpack_require__(2);
 
@@ -1886,7 +1886,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _eventemitter = __webpack_require__(54);
+var _eventemitter = __webpack_require__(55);
 
 var _eventemitter2 = _interopRequireDefault(_eventemitter);
 
@@ -2056,8 +2056,8 @@ exports.default = namespace;
 /***/ (function(module, exports, __webpack_require__) {
 
 var pSlice = Array.prototype.slice;
-var objectKeys = __webpack_require__(52);
-var isArguments = __webpack_require__(53);
+var objectKeys = __webpack_require__(53);
+var isArguments = __webpack_require__(54);
 
 var deepEqual = module.exports = function (actual, expected, opts) {
   if (!opts) opts = {};
@@ -3365,7 +3365,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var linked_list_1 = __webpack_require__(44);
+var linked_list_1 = __webpack_require__(45);
 var shadow_1 = __webpack_require__(30);
 var Registry = __webpack_require__(1);
 var ContainerBlot = /** @class */ (function (_super) {
@@ -5573,6 +5573,8 @@ var Picker = function () {
                     return '背景色';
                 case 'ql-header':
                     return '标题与正文';
+                case 'ql-align':
+                    return '对齐';
                 default:
                     return '';
             }
@@ -5718,11 +5720,11 @@ var _text = __webpack_require__(7);
 
 var _text2 = _interopRequireDefault(_text);
 
-var _clipboard = __webpack_require__(55);
+var _clipboard = __webpack_require__(56);
 
 var _clipboard2 = _interopRequireDefault(_clipboard);
 
-var _history = __webpack_require__(42);
+var _history = __webpack_require__(43);
 
 var _history2 = _interopRequireDefault(_history);
 
@@ -6485,7 +6487,9 @@ exports.SizeStyle = SizeStyle;
 
 module.exports = {
     'align': {
-        'left': __webpack_require__(76),
+        '': __webpack_require__(42),
+        'false': __webpack_require__(42),
+        'left': __webpack_require__(42),
         'center': __webpack_require__(77),
         'right': __webpack_require__(78),
         'justify': __webpack_require__(79)
@@ -6494,8 +6498,8 @@ module.exports = {
     'blockquote': __webpack_require__(81),
     'bold': __webpack_require__(82),
     'clean': __webpack_require__(83),
-    'code': __webpack_require__(58),
-    'code-block': __webpack_require__(58),
+    'code': __webpack_require__(59),
+    'code-block': __webpack_require__(59),
     'color': __webpack_require__(84),
     'direction': {
         '': __webpack_require__(85),
@@ -6536,6 +6540,12 @@ module.exports = {
 
 /***/ }),
 /* 42 */
+/***/ (function(module, exports) {
+
+module.exports = "<svg viewbox=\"0 0 18 18\"> <line class=ql-stroke x1=3 x2=15 y1=9 y2=9></line> <line class=ql-stroke x1=3 x2=13 y1=14 y2=14></line> <line class=ql-stroke x1=3 x2=9 y1=4 y2=4></line> </svg>";
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6703,7 +6713,7 @@ exports.default = History;
 exports.getLastChangeIndex = getLastChangeIndex;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6738,11 +6748,11 @@ var _theme = __webpack_require__(34);
 
 var _theme2 = _interopRequireDefault(_theme);
 
-var _colorPicker = __webpack_require__(59);
+var _colorPicker = __webpack_require__(60);
 
 var _colorPicker2 = _interopRequireDefault(_colorPicker);
 
-var _iconPicker = __webpack_require__(60);
+var _iconPicker = __webpack_require__(61);
 
 var _iconPicker2 = _interopRequireDefault(_iconPicker);
 
@@ -6750,7 +6760,7 @@ var _picker = __webpack_require__(28);
 
 var _picker2 = _interopRequireDefault(_picker);
 
-var _tooltip = __webpack_require__(61);
+var _tooltip = __webpack_require__(62);
 
 var _tooltip2 = _interopRequireDefault(_tooltip);
 
@@ -7036,6 +7046,7 @@ function fillSelect(select, values) {
     var option = document.createElement('option');
     if (value === defaultValue) {
       option.setAttribute('selected', 'selected');
+      option.setAttribute('value', value);
     } else {
       option.setAttribute('value', value);
     }
@@ -7047,7 +7058,7 @@ exports.BaseTooltip = BaseTooltip;
 exports.default = BaseTheme;
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7188,7 +7199,7 @@ exports.default = LinkedList;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7372,7 +7383,7 @@ exports.default = ScrollBlot;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7457,7 +7468,7 @@ exports.default = InlineBlot;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7533,7 +7544,7 @@ exports.default = BlockBlot;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7581,7 +7592,7 @@ exports.default = EmbedBlot;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7684,7 +7695,7 @@ exports.default = TextBlot;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7755,7 +7766,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 /**
@@ -8499,7 +8510,7 @@ function merge_tuples (diffs, start, length) {
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports) {
 
 exports = module.exports = typeof Object.keys === 'function'
@@ -8514,7 +8525,7 @@ function shim (obj) {
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 var supportsArgumentsClass = (function(){
@@ -8540,7 +8551,7 @@ function unsupported(object){
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 'use strict';
@@ -8857,7 +8868,7 @@ if ('undefined' !== typeof module) {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9281,7 +9292,7 @@ exports.matchSpacing = matchSpacing;
 exports.matchText = matchText;
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9345,7 +9356,7 @@ Bold.tagName = ['STRONG', 'B'];
 exports.default = Bold;
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9591,6 +9602,8 @@ function convertFormatToTitle(format, value) {
             return '清除格式';
         case 'align':
             switch (value) {
+                case '':
+                case false:
                 case 'left':
                     return '左对齐';
                 case 'center':
@@ -9725,13 +9738,13 @@ exports.default = Toolbar;
 exports.addControls = addControls;
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewbox=\"0 0 18 18\"> <polyline class=\"ql-even ql-stroke\" points=\"5 7 3 9 5 11\"></polyline> <polyline class=\"ql-even ql-stroke\" points=\"13 7 15 9 13 11\"></polyline> <line class=ql-stroke x1=10 x2=8 y1=5 y2=13></line> </svg>";
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9802,7 +9815,7 @@ var ColorPicker = function (_Picker) {
 exports.default = ColorPicker;
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9860,7 +9873,7 @@ var IconPicker = function (_Picker) {
 exports.default = IconPicker;
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9939,7 +9952,7 @@ var Tooltip = function () {
 exports.default = Tooltip;
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9963,7 +9976,7 @@ var _emitter = __webpack_require__(8);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _base = __webpack_require__(43);
+var _base = __webpack_require__(44);
 
 var _base2 = _interopRequireDefault(_base);
 
@@ -10119,7 +10132,7 @@ SnowTooltip.TEMPLATE = ['<a class="ql-preview" target="_blank" href="about:blank
 exports.default = SnowTheme;
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10137,17 +10150,17 @@ var _align = __webpack_require__(36);
 
 var _direction = __webpack_require__(38);
 
-var _indent = __webpack_require__(64);
+var _indent = __webpack_require__(65);
 
-var _blockquote = __webpack_require__(65);
+var _blockquote = __webpack_require__(66);
 
 var _blockquote2 = _interopRequireDefault(_blockquote);
 
-var _header = __webpack_require__(66);
+var _header = __webpack_require__(67);
 
 var _header2 = _interopRequireDefault(_header);
 
-var _list = __webpack_require__(67);
+var _list = __webpack_require__(68);
 
 var _list2 = _interopRequireDefault(_list);
 
@@ -10159,11 +10172,11 @@ var _font = __webpack_require__(39);
 
 var _size = __webpack_require__(40);
 
-var _bold = __webpack_require__(56);
+var _bold = __webpack_require__(57);
 
 var _bold2 = _interopRequireDefault(_bold);
 
-var _italic = __webpack_require__(68);
+var _italic = __webpack_require__(69);
 
 var _italic2 = _interopRequireDefault(_italic);
 
@@ -10171,23 +10184,23 @@ var _link = __webpack_require__(27);
 
 var _link2 = _interopRequireDefault(_link);
 
-var _script = __webpack_require__(69);
+var _script = __webpack_require__(70);
 
 var _script2 = _interopRequireDefault(_script);
 
-var _strike = __webpack_require__(70);
+var _strike = __webpack_require__(71);
 
 var _strike2 = _interopRequireDefault(_strike);
 
-var _underline = __webpack_require__(71);
+var _underline = __webpack_require__(72);
 
 var _underline2 = _interopRequireDefault(_underline);
 
-var _image = __webpack_require__(72);
+var _image = __webpack_require__(73);
 
 var _image2 = _interopRequireDefault(_image);
 
-var _video = __webpack_require__(73);
+var _video = __webpack_require__(74);
 
 var _video2 = _interopRequireDefault(_video);
 
@@ -10195,15 +10208,15 @@ var _code = __webpack_require__(13);
 
 var _code2 = _interopRequireDefault(_code);
 
-var _formula = __webpack_require__(74);
+var _formula = __webpack_require__(75);
 
 var _formula2 = _interopRequireDefault(_formula);
 
-var _syntax = __webpack_require__(75);
+var _syntax = __webpack_require__(76);
 
 var _syntax2 = _interopRequireDefault(_syntax);
 
-var _toolbar = __webpack_require__(57);
+var _toolbar = __webpack_require__(58);
 
 var _toolbar2 = _interopRequireDefault(_toolbar);
 
@@ -10215,15 +10228,15 @@ var _picker = __webpack_require__(28);
 
 var _picker2 = _interopRequireDefault(_picker);
 
-var _colorPicker = __webpack_require__(59);
+var _colorPicker = __webpack_require__(60);
 
 var _colorPicker2 = _interopRequireDefault(_colorPicker);
 
-var _iconPicker = __webpack_require__(60);
+var _iconPicker = __webpack_require__(61);
 
 var _iconPicker2 = _interopRequireDefault(_iconPicker);
 
-var _tooltip = __webpack_require__(61);
+var _tooltip = __webpack_require__(62);
 
 var _tooltip2 = _interopRequireDefault(_tooltip);
 
@@ -10231,7 +10244,7 @@ var _bubble = __webpack_require__(109);
 
 var _bubble2 = _interopRequireDefault(_bubble);
 
-var _snow = __webpack_require__(62);
+var _snow = __webpack_require__(63);
 
 var _snow2 = _interopRequireDefault(_snow);
 
@@ -10300,7 +10313,7 @@ _core2.default.register({
 exports.default = _core2.default;
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10373,7 +10386,7 @@ var IndentClass = new IdentAttributor('indent', 'ql-indent', {
 exports.IndentClass = IndentClass;
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10413,7 +10426,7 @@ Blockquote.tagName = 'blockquote';
 exports.default = Blockquote;
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10462,7 +10475,7 @@ Header.tagName = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
 exports.default = Header;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10659,7 +10672,7 @@ exports.ListItem = ListItem;
 exports.default = List;
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10669,7 +10682,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _bold = __webpack_require__(56);
+var _bold = __webpack_require__(57);
 
 var _bold2 = _interopRequireDefault(_bold);
 
@@ -10699,7 +10712,7 @@ Italic.tagName = ['EM', 'I'];
 exports.default = Italic;
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10763,7 +10776,7 @@ Script.tagName = ['SUB', 'SUP'];
 exports.default = Script;
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10803,7 +10816,7 @@ Strike.tagName = 'S';
 exports.default = Strike;
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10843,7 +10856,7 @@ Underline.tagName = 'U';
 exports.default = Underline;
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10941,7 +10954,7 @@ Image.tagName = 'IMG';
 exports.default = Image;
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11034,7 +11047,7 @@ Video.tagName = 'IFRAME';
 exports.default = Video;
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11133,7 +11146,7 @@ exports.FormulaBlot = FormulaBlot;
 exports.default = Formula;
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11278,12 +11291,6 @@ Syntax.DEFAULTS = {
 exports.CodeBlock = SyntaxCodeBlock;
 exports.CodeToken = CodeToken;
 exports.default = Syntax;
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports) {
-
-module.exports = "<svg viewbox=\"0 0 18 18\"> <line class=ql-stroke x1=3 x2=15 y1=9 y2=9></line> <line class=ql-stroke x1=3 x2=13 y1=14 y2=14></line> <line class=ql-stroke x1=3 x2=9 y1=4 y2=4></line> </svg>";
 
 /***/ }),
 /* 77 */
@@ -11501,7 +11508,7 @@ var _emitter = __webpack_require__(8);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _base = __webpack_require__(43);
+var _base = __webpack_require__(44);
 
 var _base2 = _interopRequireDefault(_base);
 
@@ -11647,7 +11654,7 @@ exports.default = BubbleTheme;
 /* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(63);
+module.exports = __webpack_require__(64);
 
 
 /***/ })

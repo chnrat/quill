@@ -1,5 +1,7 @@
 module.exports = {
     'align': {
+        '': require('../assets/icons/align-left.svg'),
+        'false': require('../assets/icons/align-left.svg'),
         'left': require('../assets/icons/align-left.svg'),
         'center': require('../assets/icons/align-center.svg'),
         'right': require('../assets/icons/align-right.svg'),

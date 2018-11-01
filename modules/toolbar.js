@@ -184,6 +184,8 @@ function convertFormatToTitle(format, value) {
             return '清除格式';
         case 'align':
             switch (value) {
+                case '':
+                case false:
                 case 'left':
                     return '左对齐';
                 case 'center':

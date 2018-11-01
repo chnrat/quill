@@ -253,6 +253,7 @@ function fillSelect(select, values, defaultValue = false) {
     let option = document.createElement('option');
     if (value === defaultValue) {
       option.setAttribute('selected', 'selected');
+      option.setAttribute('value', value);
     } else {
       option.setAttribute('value', value);
     }
